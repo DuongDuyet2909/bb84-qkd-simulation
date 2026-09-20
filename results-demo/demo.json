@@ -1,0 +1,230 @@
+[
+  {
+    "scenario": "ideal",
+    "config": {
+      "n_signals": 10000,
+      "eve_fraction": 0.0,
+      "noise_probability": 0.0,
+      "noise_model": "depolarizing",
+      "loss_probability": 0.0,
+      "basis_probability_z": 0.5,
+      "sample_fraction": 0.2,
+      "sample_size": null,
+      "abort_threshold": 0.11,
+      "confidence": 0.95
+    },
+    "seed": 84,
+    "n_signals": 10000,
+    "n_detected": 10000,
+    "n_sifted": 4999,
+    "requested_sample_size": 999,
+    "n_test": 999,
+    "n_remaining": 4000,
+    "detection_fraction": 1.0,
+    "sift_fraction": 0.4999,
+    "actual_errors": 0,
+    "test_errors": 0,
+    "remaining_errors": 0,
+    "qber_actual": 0.0,
+    "qber_estimate": 0.0,
+    "qber_remaining": 0.0,
+    "qber_interval": [
+      0.0,
+      0.003830574401273301
+    ],
+    "qber_ci_low": 0.0,
+    "qber_ci_high": 0.003830574401273301,
+    "decision": "continue_postprocessing",
+    "decision_reason": "The sample passes educational screening; error correction and privacy amplification are still required.",
+    "per_basis": {
+      "Z": {
+        "n_sifted": 2481,
+        "n_test": 495,
+        "n_remaining": 1986,
+        "actual_errors": 0,
+        "test_errors": 0,
+        "remaining_errors": 0,
+        "qber_actual": 0.0,
+        "qber_estimate": 0.0,
+        "qber_remaining": 0.0,
+        "qber_ci_low": 0.0,
+        "qber_ci_high": 0.007700760938707212
+      },
+      "X": {
+        "n_sifted": 2518,
+        "n_test": 504,
+        "n_remaining": 2014,
+        "actual_errors": 0,
+        "test_errors": 0,
+        "remaining_errors": 0,
+        "qber_actual": 0.0,
+        "qber_estimate": 0.0,
+        "qber_remaining": 0.0,
+        "qber_ci_low": 4.336808689942018e-19,
+        "qber_ci_high": 0.007564287542838138
+      }
+    },
+    "n_eve_intercepted": 0,
+    "n_eve_known_remaining": 0,
+    "eve_known_fraction_remaining": 0.0,
+    "eve_knowledge_note": "Simulator-only fraction of remaining Alice bits known exactly from Eve measuring in Alice's basis; not mutual information or a general security bound.",
+    "theory": {
+      "expected_qber": 0.0,
+      "expected_sift_fraction": 0.5,
+      "expected_detection_fraction": 1.0
+    },
+    "security_note": "Educational sample screening only. No secret key is produced. Wilson intervals and the 0.11 default are not finite-key security proofs."
+  },
+  {
+    "scenario": "noise",
+    "config": {
+      "n_signals": 10000,
+      "eve_fraction": 0.0,
+      "noise_probability": 0.03,
+      "noise_model": "readout_flip",
+      "loss_probability": 0.0,
+      "basis_probability_z": 0.5,
+      "sample_fraction": 0.2,
+      "sample_size": null,
+      "abort_threshold": 0.11,
+      "confidence": 0.95
+    },
+    "seed": 84,
+    "n_signals": 10000,
+    "n_detected": 10000,
+    "n_sifted": 4999,
+    "requested_sample_size": 999,
+    "n_test": 999,
+    "n_remaining": 4000,
+    "detection_fraction": 1.0,
+    "sift_fraction": 0.4999,
+    "actual_errors": 151,
+    "test_errors": 33,
+    "remaining_errors": 118,
+    "qber_actual": 0.03020604120824165,
+    "qber_estimate": 0.03303303303303303,
+    "qber_remaining": 0.0295,
+    "qber_interval": [
+      0.023616639836814127,
+      0.04602692964905973
+    ],
+    "qber_ci_low": 0.023616639836814127,
+    "qber_ci_high": 0.04602692964905973,
+    "decision": "continue_postprocessing",
+    "decision_reason": "The sample passes educational screening; error correction and privacy amplification are still required.",
+    "per_basis": {
+      "Z": {
+        "n_sifted": 2481,
+        "n_test": 495,
+        "n_remaining": 1986,
+        "actual_errors": 73,
+        "test_errors": 20,
+        "remaining_errors": 53,
+        "qber_actual": 0.029423619508262798,
+        "qber_estimate": 0.04040404040404041,
+        "qber_remaining": 0.026686807653575024,
+        "qber_ci_low": 0.02630534609006129,
+        "qber_ci_high": 0.06158121194450798
+      },
+      "X": {
+        "n_sifted": 2518,
+        "n_test": 504,
+        "n_remaining": 2014,
+        "actual_errors": 78,
+        "test_errors": 13,
+        "remaining_errors": 65,
+        "qber_actual": 0.030976965845909452,
+        "qber_estimate": 0.025793650793650792,
+        "qber_remaining": 0.03227408142999007,
+        "qber_ci_low": 0.015134814959929408,
+        "qber_ci_high": 0.043626552987444854
+      }
+    },
+    "n_eve_intercepted": 0,
+    "n_eve_known_remaining": 0,
+    "eve_known_fraction_remaining": 0.0,
+    "eve_knowledge_note": "Simulator-only fraction of remaining Alice bits known exactly from Eve measuring in Alice's basis; not mutual information or a general security bound.",
+    "theory": {
+      "expected_qber": 0.03,
+      "expected_sift_fraction": 0.5,
+      "expected_detection_fraction": 1.0
+    },
+    "security_note": "Educational sample screening only. No secret key is produced. Wilson intervals and the 0.11 default are not finite-key security proofs."
+  },
+  {
+    "scenario": "eve",
+    "config": {
+      "n_signals": 10000,
+      "eve_fraction": 1.0,
+      "noise_probability": 0.0,
+      "noise_model": "depolarizing",
+      "loss_probability": 0.0,
+      "basis_probability_z": 0.5,
+      "sample_fraction": 0.2,
+      "sample_size": null,
+      "abort_threshold": 0.11,
+      "confidence": 0.95
+    },
+    "seed": 84,
+    "n_signals": 10000,
+    "n_detected": 10000,
+    "n_sifted": 4999,
+    "requested_sample_size": 999,
+    "n_test": 999,
+    "n_remaining": 4000,
+    "detection_fraction": 1.0,
+    "sift_fraction": 0.4999,
+    "actual_errors": 1245,
+    "test_errors": 252,
+    "remaining_errors": 993,
+    "qber_actual": 0.24904980996199239,
+    "qber_estimate": 0.25225225225225223,
+    "qber_remaining": 0.24825,
+    "qber_interval": [
+      0.22630465878143302,
+      0.2800978780840627
+    ],
+    "qber_ci_low": 0.22630465878143302,
+    "qber_ci_high": 0.2800978780840627,
+    "decision": "abort",
+    "decision_reason": "The sample Wilson upper endpoint exceeds the educational screening threshold.",
+    "per_basis": {
+      "Z": {
+        "n_sifted": 2481,
+        "n_test": 495,
+        "n_remaining": 1986,
+        "actual_errors": 639,
+        "test_errors": 127,
+        "remaining_errors": 512,
+        "qber_actual": 0.25755743651753327,
+        "qber_estimate": 0.25656565656565655,
+        "qber_remaining": 0.2578046324269889,
+        "qber_ci_low": 0.22006900499505655,
+        "qber_ci_high": 0.2968115675023746
+      },
+      "X": {
+        "n_sifted": 2518,
+        "n_test": 504,
+        "n_remaining": 2014,
+        "actual_errors": 606,
+        "test_errors": 125,
+        "remaining_errors": 481,
+        "qber_actual": 0.24066719618745036,
+        "qber_estimate": 0.24801587301587302,
+        "qber_remaining": 0.23882820258192652,
+        "qber_ci_low": 0.21231340352368255,
+        "qber_ci_high": 0.2875305032935414
+      }
+    },
+    "n_eve_intercepted": 10000,
+    "n_eve_known_remaining": 2000,
+    "eve_known_fraction_remaining": 0.5,
+    "eve_knowledge_note": "Simulator-only fraction of remaining Alice bits known exactly from Eve measuring in Alice's basis; not mutual information or a general security bound.",
+    "theory": {
+      "expected_qber": 0.25,
+      "expected_sift_fraction": 0.5,
+      "expected_detection_fraction": 1.0
+    },
+    "security_note": "Educational sample screening only. No secret key is produced. Wilson intervals and the 0.11 default are not finite-key security proofs."
+  }
+]

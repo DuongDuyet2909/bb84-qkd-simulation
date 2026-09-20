@@ -1,0 +1,75 @@
+{
+  "config": {
+    "n_signals": 10000,
+    "eve_fraction": 1.0,
+    "noise_probability": 0.0,
+    "noise_model": "depolarizing",
+    "loss_probability": 0.0,
+    "basis_probability_z": 0.5,
+    "sample_fraction": 0.2,
+    "sample_size": null,
+    "abort_threshold": 0.11,
+    "confidence": 0.95
+  },
+  "seed": 84,
+  "n_signals": 10000,
+  "n_detected": 10000,
+  "n_sifted": 4999,
+  "requested_sample_size": 999,
+  "n_test": 999,
+  "n_remaining": 4000,
+  "detection_fraction": 1.0,
+  "sift_fraction": 0.4999,
+  "actual_errors": 1245,
+  "test_errors": 252,
+  "remaining_errors": 993,
+  "qber_actual": 0.24904980996199239,
+  "qber_estimate": 0.25225225225225223,
+  "qber_remaining": 0.24825,
+  "qber_interval": [
+    0.22630465878143302,
+    0.2800978780840627
+  ],
+  "qber_ci_low": 0.22630465878143302,
+  "qber_ci_high": 0.2800978780840627,
+  "decision": "abort",
+  "decision_reason": "The sample Wilson upper endpoint exceeds the educational screening threshold.",
+  "per_basis": {
+    "Z": {
+      "n_sifted": 2481,
+      "n_test": 495,
+      "n_remaining": 1986,
+      "actual_errors": 639,
+      "test_errors": 127,
+      "remaining_errors": 512,
+      "qber_actual": 0.25755743651753327,
+      "qber_estimate": 0.25656565656565655,
+      "qber_remaining": 0.2578046324269889,
+      "qber_ci_low": 0.22006900499505655,
+      "qber_ci_high": 0.2968115675023746
+    },
+    "X": {
+      "n_sifted": 2518,
+      "n_test": 504,
+      "n_remaining": 2014,
+      "actual_errors": 606,
+      "test_errors": 125,
+      "remaining_errors": 481,
+      "qber_actual": 0.24066719618745036,
+      "qber_estimate": 0.24801587301587302,
+      "qber_remaining": 0.23882820258192652,
+      "qber_ci_low": 0.21231340352368255,
+      "qber_ci_high": 0.2875305032935414
+    }
+  },
+  "n_eve_intercepted": 10000,
+  "n_eve_known_remaining": 2000,
+  "eve_known_fraction_remaining": 0.5,
+  "eve_knowledge_note": "Simulator-only fraction of remaining Alice bits known exactly from Eve measuring in Alice's basis; not mutual information or a general security bound.",
+  "theory": {
+    "expected_qber": 0.25,
+    "expected_sift_fraction": 0.5,
+    "expected_detection_fraction": 1.0
+  },
+  "security_note": "Educational sample screening only. No secret key is produced. Wilson intervals and the 0.11 default are not finite-key security proofs."
+}

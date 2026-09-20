@@ -1,0 +1,154 @@
+[
+  {
+    "preparation_basis": "Z",
+    "alice_bit": 0,
+    "measurement_basis": "Z",
+    "expected_p_one": 0.0,
+    "observed_p_one": 0.0,
+    "absolute_error": 0.0,
+    "theory_standard_error": 0.0,
+    "counts": {
+      "0": 4096,
+      "1": 0
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "      ░ ┌─┐\n  q: ─░─┤M├\n      ░ └╥┘\nc: 1/════╩═\n         0 "
+  },
+  {
+    "preparation_basis": "Z",
+    "alice_bit": 0,
+    "measurement_basis": "X",
+    "expected_p_one": 0.5,
+    "observed_p_one": 0.4970703125,
+    "absolute_error": 0.0029296875,
+    "theory_standard_error": 0.0078125,
+    "counts": {
+      "0": 2060,
+      "1": 2036
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "      ░ ┌───┐┌─┐\n  q: ─░─┤ H ├┤M├\n      ░ └───┘└╥┘\nc: 1/═════════╩═\n              0 "
+  },
+  {
+    "preparation_basis": "Z",
+    "alice_bit": 1,
+    "measurement_basis": "Z",
+    "expected_p_one": 1.0,
+    "observed_p_one": 1.0,
+    "absolute_error": 0.0,
+    "theory_standard_error": 0.0,
+    "counts": {
+      "0": 0,
+      "1": 4096
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "     ┌───┐ ░ ┌─┐\n  q: ┤ X ├─░─┤M├\n     └───┘ ░ └╥┘\nc: 1/═════════╩═\n              0 "
+  },
+  {
+    "preparation_basis": "Z",
+    "alice_bit": 1,
+    "measurement_basis": "X",
+    "expected_p_one": 0.5,
+    "observed_p_one": 0.48681640625,
+    "absolute_error": 0.01318359375,
+    "theory_standard_error": 0.0078125,
+    "counts": {
+      "0": 2102,
+      "1": 1994
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "     ┌───┐ ░ ┌───┐┌─┐\n  q: ┤ X ├─░─┤ H ├┤M├\n     └───┘ ░ └───┘└╥┘\nc: 1/══════════════╩═\n                   0 "
+  },
+  {
+    "preparation_basis": "X",
+    "alice_bit": 0,
+    "measurement_basis": "Z",
+    "expected_p_one": 0.5,
+    "observed_p_one": 0.504638671875,
+    "absolute_error": 0.004638671875,
+    "theory_standard_error": 0.0078125,
+    "counts": {
+      "0": 2029,
+      "1": 2067
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "     ┌───┐ ░ ┌─┐\n  q: ┤ H ├─░─┤M├\n     └───┘ ░ └╥┘\nc: 1/═════════╩═\n              0 "
+  },
+  {
+    "preparation_basis": "X",
+    "alice_bit": 0,
+    "measurement_basis": "X",
+    "expected_p_one": 0.0,
+    "observed_p_one": 0.0,
+    "absolute_error": 0.0,
+    "theory_standard_error": 0.0,
+    "counts": {
+      "0": 4096,
+      "1": 0
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "     ┌───┐ ░ ┌───┐┌─┐\n  q: ┤ H ├─░─┤ H ├┤M├\n     └───┘ ░ └───┘└╥┘\nc: 1/══════════════╩═\n                   0 "
+  },
+  {
+    "preparation_basis": "X",
+    "alice_bit": 1,
+    "measurement_basis": "Z",
+    "expected_p_one": 0.5,
+    "observed_p_one": 0.501708984375,
+    "absolute_error": 0.001708984375,
+    "theory_standard_error": 0.0078125,
+    "counts": {
+      "0": 2041,
+      "1": 2055
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "     ┌───┐┌───┐ ░ ┌─┐\n  q: ┤ X ├┤ H ├─░─┤M├\n     └───┘└───┘ ░ └╥┘\nc: 1/══════════════╩═\n                   0 "
+  },
+  {
+    "preparation_basis": "X",
+    "alice_bit": 1,
+    "measurement_basis": "X",
+    "expected_p_one": 1.0,
+    "observed_p_one": 1.0,
+    "absolute_error": 0.0,
+    "theory_standard_error": 0.0,
+    "counts": {
+      "0": 0,
+      "1": 4096
+    },
+    "shots": 4096,
+    "seed": 84,
+    "backend": "AerSimulator (local, ideal)",
+    "qiskit_version": "2.5.2",
+    "qiskit_aer_version": "0.17.2",
+    "circuit": "     ┌───┐┌───┐ ░ ┌───┐┌─┐\n  q: ┤ X ├┤ H ├─░─┤ H ├┤M├\n     └───┘└───┘ ░ └───┘└╥┘\nc: 1/═══════════════════╩═\n                        0 "
+  }
+]

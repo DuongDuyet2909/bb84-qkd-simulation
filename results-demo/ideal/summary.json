@@ -1,0 +1,75 @@
+{
+  "config": {
+    "n_signals": 10000,
+    "eve_fraction": 0.0,
+    "noise_probability": 0.0,
+    "noise_model": "depolarizing",
+    "loss_probability": 0.0,
+    "basis_probability_z": 0.5,
+    "sample_fraction": 0.2,
+    "sample_size": null,
+    "abort_threshold": 0.11,
+    "confidence": 0.95
+  },
+  "seed": 84,
+  "n_signals": 10000,
+  "n_detected": 10000,
+  "n_sifted": 4999,
+  "requested_sample_size": 999,
+  "n_test": 999,
+  "n_remaining": 4000,
+  "detection_fraction": 1.0,
+  "sift_fraction": 0.4999,
+  "actual_errors": 0,
+  "test_errors": 0,
+  "remaining_errors": 0,
+  "qber_actual": 0.0,
+  "qber_estimate": 0.0,
+  "qber_remaining": 0.0,
+  "qber_interval": [
+    0.0,
+    0.003830574401273301
+  ],
+  "qber_ci_low": 0.0,
+  "qber_ci_high": 0.003830574401273301,
+  "decision": "continue_postprocessing",
+  "decision_reason": "The sample passes educational screening; error correction and privacy amplification are still required.",
+  "per_basis": {
+    "Z": {
+      "n_sifted": 2481,
+      "n_test": 495,
+      "n_remaining": 1986,
+      "actual_errors": 0,
+      "test_errors": 0,
+      "remaining_errors": 0,
+      "qber_actual": 0.0,
+      "qber_estimate": 0.0,
+      "qber_remaining": 0.0,
+      "qber_ci_low": 0.0,
+      "qber_ci_high": 0.007700760938707212
+    },
+    "X": {
+      "n_sifted": 2518,
+      "n_test": 504,
+      "n_remaining": 2014,
+      "actual_errors": 0,
+      "test_errors": 0,
+      "remaining_errors": 0,
+      "qber_actual": 0.0,
+      "qber_estimate": 0.0,
+      "qber_remaining": 0.0,
+      "qber_ci_low": 4.336808689942018e-19,
+      "qber_ci_high": 0.007564287542838138
+    }
+  },
+  "n_eve_intercepted": 0,
+  "n_eve_known_remaining": 0,
+  "eve_known_fraction_remaining": 0.0,
+  "eve_knowledge_note": "Simulator-only fraction of remaining Alice bits known exactly from Eve measuring in Alice's basis; not mutual information or a general security bound.",
+  "theory": {
+    "expected_qber": 0.0,
+    "expected_sift_fraction": 0.5,
+    "expected_detection_fraction": 1.0
+  },
+  "security_note": "Educational sample screening only. No secret key is produced. Wilson intervals and the 0.11 default are not finite-key security proofs."
+}

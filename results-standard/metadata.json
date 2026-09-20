@@ -1,0 +1,163 @@
+{
+  "preset": "standard",
+  "seed": 84,
+  "n_signals": 20000,
+  "repetitions": 150,
+  "duration_seconds": 21.76,
+  "config": {
+    "preset": "standard",
+    "n_signals": 20000,
+    "repetitions": 150,
+    "seed": 84,
+    "detection_repetitions": 2000,
+    "detection_signal_rule": "max(512, 8 * sample_size)",
+    "sample_fraction_default": 0.2,
+    "basis_probability_z": 0.5,
+    "confidence": 0.95,
+    "seed_derivation": "first 128 bits SHA-256([base_seed, experiment_id, sorted_config, repeat])"
+  },
+  "experiments": [
+    {
+      "id": "01_eve_sweep",
+      "title": "QBER theo tỷ lệ Eve",
+      "description": "Eve chặn–đo–gửi lại với ba mức nhiễu depolarizing.",
+      "figure": "figures/01_eve_sweep.png",
+      "pdf": "figures/01_eve_sweep.pdf",
+      "raw_csv": "data/01_eve_sweep_raw.csv",
+      "summary_csv": "data/01_eve_sweep_summary.csv",
+      "findings": [
+        "Eve chặn toàn bộ, không nhiễu: QBER mẫu trung bình 24.8601%; kỳ vọng 25%.",
+        "Sai lệch tuyệt đối lớn nhất giữa trung bình mẫu và lý thuyết trên lưới: 0.1399 điểm phần trăm.",
+        "Nhiễu và tấn công kết hợp theo e+c−2ec; QBER không xác định danh tính tác nhân gây lỗi."
+      ],
+      "error_semantics": "N=20,000; R=150; mean +/- 1 SEM across runs; dashed = theory; sample fraction=0.20; pZ=0.50.",
+      "run_count": 4950
+    },
+    {
+      "id": "02_noise_sweep",
+      "title": "QBER theo mô hình nhiễu",
+      "description": "Phân biệt depolarizing rho → (1−p)rho+pI/2 với lật bit đầu ra Bob.",
+      "figure": "figures/02_noise_sweep.png",
+      "pdf": "figures/02_noise_sweep.pdf",
+      "raw_csv": "data/02_noise_sweep_raw.csv",
+      "summary_csv": "data/02_noise_sweep_summary.csv",
+      "findings": [
+        "Tại p=0.20: depolarizing cho QBER mẫu 10.019%, readout_flip 20.062%.",
+        "Lý thuyết tương ứng là p/2 và p. Không dùng cùng p để tuyên bố hai kênh có cùng mức lỗi."
+      ],
+      "error_semantics": "N=20,000; R=150; mean +/- 1 SEM; no Eve, no loss; sample fraction=0.20; pZ=0.50.",
+      "run_count": 3300
+    },
+    {
+      "id": "03_sample_uncertainty",
+      "title": "Bất định QBER và chi phí lấy mẫu",
+      "description": "Lấy mẫu công khai từ đầu ra BB84; Eve f=0.20, không nhiễu/mất, Q kỳ vọng 0.05.",
+      "figure": "figures/03_sample_uncertainty.png",
+      "pdf": "figures/03_sample_uncertainty.pdf",
+      "raw_csv": "data/03_sample_uncertainty_raw.csv",
+      "summary_csv": "data/03_sample_uncertainty_summary.csv",
+      "findings": [
+        "Khi m tăng từ 10 lên 5000, độ rộng Wilson trung bình đổi từ 0.3316 thành 0.0121.",
+        "Ở m=5000, phần ứng viên chưa công bố trung bình bằng 25.00% số tín hiệu phát.",
+        "Độ lệch chuẩn giữa các lần chạy khác với sai số chuẩn của trung bình; Wilson 95% không phải bảo đảm finite-key QKD."
+      ],
+      "error_semantics": "N=20,000; R=150; LEFT bars = 1 SD (not SEM); CENTER = mean per-run Wilson width; no finite-key security claim.",
+      "run_count": 1350
+    },
+    {
+      "id": "04_error_detection",
+      "title": "Xác suất thấy ít nhất một lỗi",
+      "description": "Mỗi điểm chạy giao thức BB84 nhiều lần; so sánh với 1−(1−Q)^m trong ensemble i.i.d.",
+      "figure": "figures/04_error_detection.png",
+      "pdf": "figures/04_error_detection.pdf",
+      "raw_csv": "data/04_error_detection_raw.csv",
+      "summary_csv": "data/04_error_detection_summary.csv",
+      "findings": [
+        "Q=2.5%, m=20: xác suất thấy lỗi mô phỏng 39.55%; lý thuyết 39.73%.",
+        "Có 0 lần không đủ cỡ mẫu; các lần đó được lưu dữ liệu và loại khỏi mẫu số ước lượng xác suất.",
+        "Đây là xác suất tìm thấy lỗi, không phải xác suất chứng minh Eve hiện diện; mẫu nhỏ có thể bỏ sót lỗi."
+      ],
+      "error_semantics": "R=2000 per point; N=max(512,8m); bars = 95% Wilson across complete runs; dashed = theory; no noise/loss.",
+      "run_count": 48000
+    },
+    {
+      "id": "05_loss_retention",
+      "title": "Mất tín hiệu và tỷ lệ giữ lại",
+      "description": "Mất tín hiệu độc lập; nhiễu nền depolarizing p=0.04 giữ cố định; không Eve.",
+      "figure": "figures/05_loss_retention.png",
+      "pdf": "figures/05_loss_retention.pdf",
+      "raw_csv": "data/05_loss_retention_raw.csv",
+      "summary_csv": "data/05_loss_retention_summary.csv",
+      "findings": [
+        "Tỷ lệ sifted/phát kỳ vọng bằng (1−L)/2; phần ứng viên còn lại xấp xỉ 0.4(1−L).",
+        "Nhiễu nền cho QBER kỳ vọng 2% dù xác suất mất thay đổi; ít tín hiệu sống sót làm ước lượng dao động hơn.",
+        "Tại L=1 không có bit được phát hiện; QBER là không xác định, không được thay bằng 0."
+      ],
+      "error_semantics": "N=20,000; R=150; mean +/- 1 SEM; dashed = theory; candidate curve approximate due to floor(0.2*sifted).",
+      "run_count": 1650
+    },
+    {
+      "id": "06_secret_fraction",
+      "title": "Tỷ lệ khóa tiệm cận tham chiếu",
+      "description": "r∞ = max(0, 1−h2(Q)−fEC h2(Q)); mô hình lý tưởng, sai số bit/pha đối xứng.",
+      "figure": "figures/06_secret_fraction.png",
+      "pdf": "figures/06_secret_fraction.pdf",
+      "raw_csv": null,
+      "summary_csv": "data/06_secret_fraction_theory.csv",
+      "findings": [
+        "Khi hiệu suất sửa lỗi kém hơn (fEC tăng), phần khóa tiệm cận tham chiếu giảm.",
+        "Mốc xấp xỉ 11% chỉ thuộc trường hợp fEC=1 với giả định đang nêu; không là ngưỡng chứng nhận phổ quát.",
+        "Chương trình chưa sửa lỗi/khuếch đại riêng tư; các đường này không phải khóa bí mật thực tế được sinh ra."
+      ],
+      "error_semantics": "THEORY ONLY: no Monte Carlo, no error bars. Excludes finite-size, sifting, test, verification and authentication costs.",
+      "run_count": 0
+    }
+  ],
+  "highlights": [
+    "Eve chặn toàn bộ, không nhiễu: QBER mẫu trung bình 24.8601%; kỳ vọng 25%.",
+    "Tại p=0.20: depolarizing cho QBER mẫu 10.019%, readout_flip 20.062%.",
+    "Khi m tăng từ 10 lên 5000, độ rộng Wilson trung bình đổi từ 0.3316 thành 0.0121.",
+    "Q=2.5%, m=20: xác suất thấy lỗi mô phỏng 39.55%; lý thuyết 39.73%.",
+    "Tỷ lệ sifted/phát kỳ vọng bằng (1−L)/2; phần ứng viên còn lại xấp xỉ 0.4(1−L).",
+    "Khi hiệu suất sửa lỗi kém hơn (fEC tăng), phần khóa tiệm cận tham chiếu giảm."
+  ],
+  "error_semantics": {
+    "01_02_05": "Mean +/- 1 standard error of the mean (SEM) across independent runs; not a 95% interval.",
+    "03": "QBER mean +/- 1 sample standard deviation (SD); Wilson widths are mean per-run 95% interval widths.",
+    "04": "95% Wilson interval for probability of observing at least one error across complete independent runs.",
+    "06": "Theoretical curves only, without Monte Carlo errors or finite-key security certification."
+  },
+  "data_notes": [
+    "Raw CSV contains each run's complete configuration, deterministic integer seed and aggregate counts, never raw bits.",
+    "qber_actual is simulator-only ground truth; qber_estimate uses the publicly disclosed sample.",
+    "Empty CSV cells denote undefined values (e.g. QBER with no detections); never interpret as zero.",
+    "Seeds have up to 39 decimal digits: import the seed column as TEXT in Excel to avoid numeric rounding.",
+    "CSV uses UTF-8 with BOM. Reproduce a run by constructing BB84Config from its config columns and simulate(config, int(seed)).",
+    "Candidate bits are not secret keys; no information reconciliation or privacy amplification is implemented."
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "executable": "python (local machine path omitted for GitHub)",
+    "packages": {
+      "numpy": "2.3.5",
+      "matplotlib": "3.11.2",
+      "qiskit": "2.5.2",
+      "qiskit-aer": "0.17.2"
+    },
+    "project_version": "1.0.0",
+    "source_sha256": {
+      "__init__.py": "a1d63ff42d02f5f5684924b43a9b74f8c986e18b2871efa3f15a8315b25184ff",
+      "__main__.py": "6e6d51286b2a06620d440b4fb6418de6de559f4d218feb857ae747241da122fe",
+      "core.py": "fe9801bbc1c3fb2408f8363bf7ce4f8a8eed0cf83bf372fd3d633c7e03a470a1",
+      "experiments.py": "b7e26f48432f5d0b6b97482ba57afe1d6c40fd38b9f601095d3617100bf5212d",
+      "qiskit_demo.py": "dc10afe40a90a67239756b21044f95d58d5207c7aaca38ed536e2ba85995f593",
+      "report.py": "b9c08db287e0dc21204affd4454f5016aeaf44d85cfbca0367f556fecd83813c",
+      "report_style.css": "4afbc62d3883a7316633a848f878762f30bc5b9c4c7467eae9a1a7e038abb714",
+      "theory.py": "f5ae852567cd65a181615739111d3948625a5d41d971c7623e77fe96db2bd40f"
+    }
+  },
+  "report_created_utc": "2026-09-20T11:54:12.642694+00:00",
+  "scope": "Educational BB84; no actual secret-key extraction or composable finite-key proof.",
+  "publication_note": "Source line endings normalized to LF by .gitattributes; numerical results unchanged."
+}
