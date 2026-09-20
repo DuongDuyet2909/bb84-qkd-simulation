@@ -1,0 +1,113 @@
+1. Chạy nhanh trên máy hiện tại: Máy local: C:\Users\chund\OneDrive\Documents\ChatGPT\BTL BB84
+| File                  | Chức năng                                         |
+|-----------------------|---------------------------------------------------|
+| `RUN_DEMO.cmd`        | Chạy các tình huống BB84 mẫu                      |
+| `RUN_EXPERIMENTS.cmd` | Chạy bộ thí nghiệm chuẩn, tạo dữ liệu và 6 đồ thị |
+| `RUN_TESTS.cmd`       | Chạy 59 bài kiểm thử                              |
+| `SETUP_WINDOWS.cmd`   | Cài môi trường khi sử dụng trên máy mới           |
+Sau khi chạy RUN_EXPERIMENTS.cmd, mở:
+[results-standard/report.html](C:/Users/chund/OneDrive/Documents/ChatGPT/BTL BB84/results-standard/report.html)
+
+2. Chạy bằng PowerShell để điều khiển tham số
+Mở PowerShell, sau đó nhập: Set-Location -LiteralPath 'C:\Users\chund\OneDrive\Documents\ChatGPT\BTL BB84' (tùy theo path của thư mục)
+Kiểm tra chương trình: .\.venv\Scripts\python.exe -m bb84 --help
+Nếu thấy các lệnh demo, simulate, experiments, qiskit-check, chương trình đã sẵn sàng.
+
+3. Quan sát BB84 từng bước với một ví dụ nhỏ
+Ví dụ nhỏ giúp theo dõi bit, cơ sở đo và quá trình sàng lọc. Khi đọc kết quả, chú ý:
+1. Alice chọn bit và cơ sở \(Z/X\).
+2. Eve có thể chặn, đo rồi gửi lại trạng thái.
+3. Bob chọn cơ sở đo.
+4. Alice và Bob giữ các vị trí có cơ sở trùng nhau.
+5. Họ công khai một mẫu bit để ước lượng QBER.
+Không dùng 16 tín hiệu để kết luận thống kê. Chế độ này phục vụ giải thích nguyên lý; số liệu có thể dao động rất mạnh. 
+chạy : .\.venv\Scripts\python.exe -m bb84 demo --seed 84 --signals 16 --trace
+
+Tiếp theo chạy ví dụ lớn hơn và lưu kết quả: .\.venv\Scripts\python.exe -m bb84 demo --seed 84 --signals 10000 --output results-demo
+| Tình huống                                | Kết quả kỳ vọng khi số tín hiệu đủ lớn |
+|-------------------------------------------|----------------------------------------|
+| Không Eve, không nhiễu                    | QBER bằng 0                            |
+| Alice và Bob chọn cơ sở ngẫu nhiên đều    | Giữ khoảng 50% tín hiệu nhận được      |
+| Eve intercept–resend toàn bộ, không nhiễu | QBER khoảng 25%                        |
+Kết quả từng lần chạy hữu hạn có thể lệch khỏi giá trị kỳ vọng.
+
+4. Tạo đầy đủ đồ thị và báo cáo
+Chạy bộ nhanh trước để kiểm tra luồng hoạt động: .\.venv\Scripts\python.exe -m bb84 experiments --preset quick --output results-quick --seed 84
+Mở báo cáo: Start-Process '.\results-quick\report.html'
+Sau đó chạy bộ chuẩn để lấy kết quả dùng trong bài tập: .\.venv\Scripts\python.exe -m bb84 experiments --preset standard --output results-standard --seed 84
+Mở báo cáo: Start-Process '.\results-quick\report.html'
+| Chế độ     | Quy mô thí nghiệm chính 	    | Mục đích                             |
+|------------|------------------------------|--------------------------------------|
+| `quick`    | 5.000 tín hiệu, 30 lần lặp   | Kiểm tra nhanh, thử sau khi sửa code |
+| `standard` | 20.000 tín hiệu, 150 lần lặp | Phân tích và lấy hình cho báo cáo    |
+
+Trong thư mục kết quả:
+| Thành phần      | Cách sử dụng 				     |
+|-----------------|--------------------------------------------------|
+| `report.html`   | Xem báo cáo tổng hợp bằng trình duyệt            |
+| `RESULTS.md`    | Đọc phần tổng hợp bằng Markdown hoặc trên GitHub |
+| `figures/*.png` | Chèn hình vào Word, slide                        |
+| `figures/*.pdf` | Dùng hình chất lượng cao trong báo cáo           |
+| `data/*.csv`    | Mở bằng Excel hoặc phân tích lại bằng Python     |
+| `metadata.json` | Tra cứu cấu hình và thông tin tái lập kết quả    |
+
+5. Tự thiết kế một thí nghiệm
+Ví dụ: 20.000 tín hiệu, Eve chặn 50%, nhiễu depolarizing 2%, mất tín hiệu 10%, lấy 20% bit đã sàng lọc để kiểm tra: .\.venv\Scripts\python.exe -m bb84 simulate --signals 20000 --eve 0.5 --noise 0.02 --noise-model depolarizing --loss 0.1 --sample-fraction 0.2 --seed 84 --output results-custom
+
+Ý nghĩa tham số:
+| Tham số             | Ý nghĩa                                      |
+|---------------------|----------------------------------------------|
+| `--signals`         | Số tín hiệu Alice phát                       |
+| `--eve`             | Tỷ lệ tín hiệu Eve chặn, từ 0 đến 1          |
+| `--noise`           | Cường độ nhiễu theo mô hình đã chọn          |
+| `--noise-model`     | `depolarizing` hoặc `readout_flip`           |
+| `--loss`            | Xác suất mất tín hiệu                        |
+| `--sample-fraction` |Tỷ lệ bit sau sàng lọc được công khai kiểm tra|
+| `--seed`            | Hạt giống ngẫu nhiên để tái lập              |
+| `--output`          | Thư mục lưu kết quả                          |
+
+Để so sánh có ý nghĩa:
+1. Thay đổi một tham số mỗi lần.
+2. Giữ các tham số khác cố định.
+3. Dùng thư mục đầu ra khác nhau cho từng cấu hình.
+4. Dùng nhiều lần lặp để đánh giá dao động; một seed chỉ giúp tái lập một lần chạy.
+
+Ví dụ so sánh Eve:.\.venv\Scripts\python.exe -m bb84 simulate --signals 20000 --eve 0 --seed 84 --output results-eve-0
+                  .\.venv\Scripts\python.exe -m bb84 simulate --signals 20000 --eve 0.5 --seed 84 --output results-eve-50
+                  .\.venv\Scripts\python.exe -m bb84 simulate --signals 20000 --eve 1 --seed 84 --output results-eve-100
+
+6. Kiểm tra code sau khi chỉnh sửa 
+Chạy: .\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
+
+7. Sử dụng notebook và Qiskit — phần tùy chọn
+Chương trình chính chạy bằng NumPy; notebook và Qiskit giúp minh họa thêm.
+Cài các thư viện tùy chọn: .\.venv\Scripts\python.exe -m pip install -r requirements-optional.txt
+Mở JupyterLab: .\.venv\Scripts\python.exe -m jupyterlab
+Trong giao diện trình duyệt:
+1. Mở thư mục notebooks.
+2. Mở BB84_tutorial.ipynb.
+3. Chạy từng ô bằng Shift + Enter, hoặc chọn Run → Run All Cells.
+4. Đọc phần giải thích và đồ thị theo thứ tự.
+
+Kiểm tra mạch lượng tử bằng Qiskit: .\.venv\Scripts\python.exe -m bb84 qiskit-check --shots 4096 --seed 84
+
+8. Tải từ GitHub và chạy trên máy khác
+
+Cách A — Download ZIP, thuận tiện nếu chỉ muốn chạy
+1. Đăng nhập GitHub bằng tài khoản có quyền truy cập repository.
+2. Mở repository BB84.
+3. Chọn Code → Download ZIP.
+4. Giải nén toàn bộ, chẳng hạn vào thư mục Documents.
+5. Cài Python 3.12 nếu máy chưa có Python; bật tùy chọn thêm Python vào PATH.
+6. Mở thư mục đã giải nén, nhấp đúp SETUP_WINDOWS.cmd.
+7. Chạy RUN_TESTS.cmd.
+8. Chạy RUN_DEMO.cmd, rồi RUN_EXPERIMENTS.cmd.
+Không chạy trực tiếp bên trong file ZIP và không sao chép .venv từ máy cũ sang. Mỗi máy cần tạo môi trường riêng.
+
+
+Cách B — Git clone, phù hợp nếu sẽ cập nhật và nộp code
+Sau khi cài Git và Python, mở PowerShell ở thư mục muốn lưu dự án: git clone https://github.com/DuongDuyet2909/bb84-qkd-simulation.git
+Set-Location bb84-qkd-simulation
+.\SETUP_WINDOWS.cmd
+.\RUN_TESTS.cmd
+.\RUN_EXPERIMENTS.cmd
